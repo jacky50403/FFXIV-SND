@@ -32,7 +32,7 @@
                     ->Will also loop back to the first instance after no fates found in third instance.
                     ->In SND settings under /target turn off Stop macro if not found setting.
                     ->In SND settings under /waitaddon turn off both settings.
-                Stopped it from mounting at the start till a fate is found so you don't mount jump then unmount if there are no fates.
+                Stopped it from mounting at the start till a fate is found so you don't mount ジャンプ then unmount if there are no fates.
                 Added names of fates to blacklist.
     -> 0.1.8.1  got rid of uneeded echo messages
     -> 0.1.8    teleport to closest aethyrite for fates.
@@ -326,10 +326,10 @@ CheckTeleport(fateId)
     if noFate ~= true then
     while IsInFate() == false and GetCharacterCondition(4) == false do
         yield("/wait 3.0001")
-        yield('/gaction "mount roulette"')
+        yield('/gaction "マウント・ルーレット"')
         yield("/wait 3.0002")
     if GetCharacterCondition(4) == true and HasFlightUnlocked(zoneid) then
-        yield("/gaction jump")
+        yield("/gaction ジャンプ")
         yield("/wait 2.0002")
     end
     end
@@ -433,7 +433,7 @@ yield("/wait 1.0003")
     yield("/wait 1.0016")
     end
     yield("/vnavmesh stop")
-    yield("/gaction dismount")
+    yield("/gaction 降りる")
     if GetCharacterCondition(45) == false and InstanceCount == 0 then
     yield("/wait 0.5005")
     yield("/li 1")
@@ -471,7 +471,7 @@ end
     PlocX = GetPlayerRawXPos(Name)
     PlocY = GetPlayerRawYPos(Name)+40
     PlocZ = GetPlayerRawZPos(Name)
-    yield("/gaction jump")
+    yield("/gaction ジャンプ")
     yield("/wait 0.5009")
     PathfindAndMoveTo(PlocX, PlocY, PlocZ, true)
     PathStop()
@@ -565,7 +565,7 @@ Fate1 = fateId
 --Jumps when landing while pathing to a fate
 while PathIsRunning() or PathfindInProgress() and IsInFate() == false do
     if GetCharacterCondition(4) and GetCharacterCondition(77) == false and HasFlightUnlocked(zoneid) then 
-        yield("/gaction jump")
+        yield("/gaction ジャンプ")
         yield("/wait 0.3")
     end
 --Stops Moving to dead Fates
@@ -598,7 +598,7 @@ if noFate == true and PathIsRunning() or PathfindInProgress() then
 end
 --Dismounting upon arriving in fate
 while IsInFate() and GetCharacterCondition(4) do
-    yield("/gaction dismount")
+    yield("/gaction 降りる")
     yield("/wait 0.3")
     yield("/vnavmesh stop")
 end
@@ -610,7 +610,7 @@ while IsInFate() do
     yield("/vnavmesh stop")
     if GetCharacterCondition(4) == true then
         yield("/vnavmesh stop")
-        yield("/gaction dismount")
+        yield("/gaction 降りる")
         yield("/wait 2.0012")
         PathStop()
         yield("/vnavmesh stop")
@@ -656,7 +656,7 @@ end
 if RepairAmount > 0 and GetCharacterCondition(4) == false then
     if NeedsRepair(RepairAmount) then
     while not IsAddonVisible("Repair") do
-    yield("/generalaction repair")
+    yield("/generalaction 修理")
     yield("/wait 0.5012")
     end
     yield("/callback Repair true 0")
@@ -676,11 +676,11 @@ end
 --Materia Extraction function
 if ExtractMateria == true  and GetCharacterCondition(4) == false then
 if CanExtractMateria(100) then
-    yield("/generalaction \"Materia Extraction\"")
+    yield("/generalaction \"マテリア精製\"")
     yield("/waitaddon Materialize")
 while CanExtractMateria(100) == true do
     if not IsAddonVisible("Materialize") then
-    yield("/generalaction \"Materia Extraction\"")
+    yield("/generalaction \"マテリア精製\"")
     end
     yield("/pcall Materialize true 2")
     yield("/wait 0.5")
@@ -700,11 +700,11 @@ end
 end
 
 if CanExtractMateria(100) and Extract == true and GetCharacterCondition(27) == false then
-        yield("/generalaction \"Materia Extraction\"")
+        yield("/generalaction \"マテリア精製\"")
         yield("/waitaddon Materialize")
     while CanExtractMateria(100) == true and GetCharacterCondition(27) == false do
         if not IsAddonVisible("Materialize") then
-        yield("/generalaction \"Materia Extraction\"")
+        yield("/generalaction \"マテリア精製\"")
         end
         yield("/pcall Materialize true 2")
         yield("/wait 0.5")
