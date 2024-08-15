@@ -86,9 +86,9 @@ This Plugins are Optional and not needed unless you have it enabled in the setti
 --false = no
 
 --Teleport and Voucher
-teleport = "Iq Br'aax"     --Enter the name of the Teleporter where youu farm Fates so it teleport back to the area and keeps farming
+teleport = "Ok'hanu"     --Enter the name of the Teleporter where youu farm Fates so it teleport back to the area and keeps farming
 ChangeInstance = true      --should it Change Instance when there is no Fate (only works on DT fates)
-Exchange = false           --should it Exchange Vouchers
+Exchange = true           --should it Exchange Vouchers
 OldV = false               --should it Exchange Old Vouchers
 
 --Fate settings
@@ -382,7 +382,7 @@ end
 if ChangeInstance == true and InstanceCount ~= 3 then
 yield("/wait 1.0003")
 
-    yield("/target Aetheryte")
+    yield("/target エーテライト")
     yield("/wait 1.0014")
 
     while HasTarget() == false do
@@ -413,7 +413,7 @@ yield("/wait 1.0003")
     while GetCharacterCondition(45) do
     yield("/wait 1.0015")
     end
-    yield("/target Aetheryte")
+    yield("/target エーテライト")
     end
 
     yield("/lockon")
@@ -422,7 +422,7 @@ yield("/wait 1.0003")
     yield("/wait 0.5004")
     if IsMoving() == false then
     if GetTargetName() == "Aetheryte" then
-    yield("/target Aetheryte")
+    yield("/target エーテライト")
     yield("/lockon")
     end
     yield("/automove")
@@ -743,9 +743,9 @@ if Retainers == true and GetCharacterCondition(26) == false then
         PathfindAndMoveTo(-122.7251, 18.0000, 20.3941)
         yield("/wait 1.0033")
         end
-        yield("/target Summoning Bell")
+        yield("/target 呼び鈴")
         while GetTargetName() == "" do
-        yield("/target Summoning Bell")
+        yield("/target 呼び鈴")
         end 
         while GetTargetName() == "Summoning Bell" and GetDistanceToTarget() > 4.5 do
             PathfindAndMoveTo(-122.7251, 18.0000, 20.3941)
@@ -842,7 +842,7 @@ if IsInZone(1186) then
     end
 
     if PathIsRunning() == false or PathfindInProgress() == false then
-    yield("/target Aetheryte")
+    yield("/target エーテライト")
     yield("/lockon")
     yield("/automove")
     end
@@ -852,7 +852,7 @@ if IsInZone(1186) then
     end
 
     while GetCharacterCondition(45) == false do
-    yield("/li Nexus Arcade")
+    yield("/li ネクサスアーケード")
     yield("/wait 2.0014")
     end
 
@@ -871,7 +871,7 @@ if IsInZone(1186) then
     end
 
     if IsInZone(1186) and PathIsRunning() == false or PathfindInProgress() == false then
-        yield("/target Beryl")
+        yield("/target 広域交易商 ベリル")
         yield("/wait 0.5019")
         
         while IsInZone(1186) and not IsAddonVisible("ShopExchangeCurrency") do
@@ -882,7 +882,7 @@ if IsInZone(1186) then
         end
 
         if IsInZone(1186) and GetCharacterCondition(31) == true and IsAddonVisible("ShopExchangeCurrency") then
-            yield("/callback ShopExchangeCurrency false 0 5 13") --Change the last number "13" to the amount u want to buy 
+            yield("/callback ShopExchangeCurrency false 0 5 14") --Change the last number "13" to the amount u want to buy 
             yield("/wait 0.5021")
             yield("/callback SelectYesno true 0")
             yield("/wait 0.5022")
